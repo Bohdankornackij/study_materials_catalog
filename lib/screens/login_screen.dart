@@ -15,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final email = TextEditingController(text: 'student@lpnu.ua');
-  final password = TextEditingController(text: 'password123');
+  final password = TextEditingController(text: '1234');
   bool invalid = false;
   @override
   void dispose() {
@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void signIn() {
     // Local demonstration only; no authentication request is sent.
-    if (password.text == '1234' || password.text.isEmpty) {
+    if (password.text != '1234') {
       setState(() => invalid = true);
       return;
     }

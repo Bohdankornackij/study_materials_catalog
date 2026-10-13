@@ -13,9 +13,7 @@ class AddMaterialScreen extends StatefulWidget {
 
 class _AddMaterialScreenState extends State<AddMaterialScreen> {
   final title = TextEditingController();
-  final topic = TextEditingController(
-    text: 'Topic 2. Requirements Specification and Graphic Design',
-  );
+  final topic = TextEditingController();
   final content = TextEditingController();
   MaterialKind kind = MaterialKind.notes;
   final labels = ['Notes', 'Link', 'File'];
@@ -62,8 +60,14 @@ class _AddMaterialScreenState extends State<AddMaterialScreen> {
                   child: Padding(
                     padding: EdgeInsets.only(right: i == 2 ? 0 : 10),
                     child: InkWell(
-                      onTap: () =>
-                          setState(() => kind = MaterialKind.values[i]),
+                      onTap: () {
+                        if (kind != MaterialKind.values[i]) {
+                          setState(() {
+                            kind = MaterialKind.values[i];
+                            content.clear();
+                          });
+                        }
+                      },
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 18),
